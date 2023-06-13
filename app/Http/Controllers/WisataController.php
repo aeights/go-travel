@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
 
@@ -14,12 +15,15 @@ class WisataController extends Controller
     }
     
     public function showAdd(){
-        return view('admin.addwisata');
+        return view('admin.addwisata',[
+            'categories' => Category::all()
+        ]);
     }
     
     public function add(Request $request){
         $validated = $request->validate([
             'nama' => ['required'],
+            'kategori_id' => ['required'],
             'alamat' => ['required'],
             'harga' => ['required'],
             'gambar' => ['required'],
@@ -31,6 +35,7 @@ class WisataController extends Controller
                 $wisata = new Wisata();
                 $request->file('gambar')->move('wisata/',date('YmdHis') . "." .$request->file('gambar')->getClientOriginalName());
                 $wisata->nama=$request->nama;
+                $wisata->category_id=$request->kategori_id;
                 $wisata->alamat=$request->alamat;
                 $wisata->harga=$request->harga;
                 $wisata->gambar=date('YmdHis') . "." .$request->file('gambar')->getClientOriginalName();
@@ -43,7 +48,8 @@ class WisataController extends Controller
 
     public function showEdit($id){
         return view('admin.editwisata',[
-            'wisata' => Wisata::find($id)->first()
+            'wisata' => Wisata::find($id)->first(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -61,6 +67,7 @@ class WisataController extends Controller
                 $request->file('gambar')->move('wisata/',date('YmdHis') . "." .$request->file('gambar')->getClientOriginalName());
                 unlink("wisata/".$request->old_gambar);
                 $wisata->nama=$request->nama;
+                $wisata->category_id=$request->kategori_id;
                 $wisata->alamat=$request->alamat;
                 $wisata->harga=$request->harga;
                 $wisata->gambar=date('YmdHis') . "." .$request->file('gambar')->getClientOriginalName();

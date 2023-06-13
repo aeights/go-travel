@@ -13,6 +13,14 @@
                         <input name="nama" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Wisata">
                     </div>
                     <div class="mb-3">
+                        <select name="kategori_id" class="form-select" aria-label="Kategori Wisata">
+                            <option selected>Pilih Kategori</option>
+                            @foreach ($categories as $item)
+                            <option value="{{$item->id}}">{{$item->kategori}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Alamat Wisata</label>
                         <input name="alamat" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Jl. ">
                     </div>

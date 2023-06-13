@@ -33,47 +33,15 @@
                 </div>
             </div>
         </nav>
-        <!-- Page header with logo and tagline-->
-        <header style="background-image: url('https://source.unsplash.com/K7HvIvsPy8w'); background-size: cover" class="py-5 bg-light border-bottom mb-4">
-            <div class="container">
-                <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Go Travel!</h1>
-                    <p class="lead mb-0">Cari Tempat Wisata Favoritmu!</p>
-                </div>
-            </div>
-        </header>
+
         <!-- Page content-->
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
-                <!-- Blog entries-->
                 <div class="col-lg-8">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{{asset('wisata/'.$featured_post->gambar)}}" alt="..." /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">{{$featured_post->created_at}}</div>
-                            <h2 class="card-title">{{$featured_post->nama}}</h2>
-                            <p class="card-title fs-5">Rp. {{$featured_post->harga}}</p>
-                            <p class="card-text">{{substr($featured_post->deskripsi,100)}}...</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <!-- Post content-->
+                    <article>
                         @yield('post')
-                    </div>
-                    <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                        </ul>
-                    </nav>
+                    </article>
                 </div>
 
                 <!-- Side widgets-->
@@ -121,4 +89,3 @@
         <script src="{{asset('blog/js/scripts.js')}}"></script>
     </body>
 </html>
-

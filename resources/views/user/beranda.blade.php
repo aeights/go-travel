@@ -8,9 +8,14 @@
             <div class="card-body">
                 <div class="small text-muted">{{$post->created_at}}</div>
                 <h2 class="card-title h4">{{$post->nama}}</h2>
-                <h2 class="card-title h4">{{$post->harga}}</h3>
-                <p class="card-text">{{$post->deskripsi}}</p>
-                <a class="btn btn-primary" href="">Read more →</a>
+                <p class="card-title fs-5">Rp. {{$post->harga}}</p>
+                <p class="card-text">{{substr($post->deskripsi,100)}}...</p>
+                {{-- {{dd(strtolower(implode('-',explode(' ',$post->nama))));}} --}}
+                <form action="{{ url('/'.strtolower(implode('-',explode(' ',$post->nama)))) }}" method="POST">
+                    @csrf
+                    <input name="id" value="{{$post->id}}" type="hidden" class="form-control">
+                    <button type="submit" class="btn btn-primary">Read more →</button>
+                </form>
             </div>
         </div>
     </div>

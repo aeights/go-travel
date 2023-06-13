@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\BlogUserController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\WisataController;
@@ -50,3 +51,5 @@ Route::get('/hapus-wisata/{id}',[WisataController::class,'delete']);
 
 // BLOG
 Route::get('/',[BlogUserController::class,'show']);
+
+Route::post('/{slug}',[BlogPostController::class,'show']);
