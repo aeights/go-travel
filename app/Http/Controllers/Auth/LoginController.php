@@ -20,11 +20,21 @@ class LoginController extends Controller
 
         if ($credentials) {
             if (Auth::attempt($credentials)) {
-                return redirect('/dashboard');
+                if (Auth::user()->role == 'user') {
+                    return redirect('/');
+                }
+                elseif (Auth::user()->role == 'admin') {
+                    return redirect('/dashboard');
+                }
             }
             else{
                 return back()->with('message','Username atau Password Anda Salah!');
             }
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }

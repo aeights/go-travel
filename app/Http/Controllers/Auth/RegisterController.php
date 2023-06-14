@@ -28,7 +28,9 @@ class RegisterController extends Controller
             $user->name=$request->fname.$request->lname;
             $user->email=$request->email;
             $user->password=Hash::make($request->password);
+            $user->role='user';
             $user->save();
+            return redirect('/login');
         }
     }
 }

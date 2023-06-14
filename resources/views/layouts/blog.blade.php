@@ -24,10 +24,10 @@
                         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                         <li class="nav-item"><a class="nav-link active me-5" aria-current="page" href="/">Blog</a></li>
                         @if (Auth::check())
-                        <li><a href="" class="btn btn-outline-secondary me-2">Logout</a></li>
+                        <li><a href="/logout" class="btn btn-outline-secondary me-2">Logout</a></li>
                         @else
-                        <li><a href="" class="btn btn-outline-secondary me-2">Login</a></li>
-                        <li><a href="" class="btn btn-outline-secondary">Daftar</a></li>
+                        <li><a href="/login" class="btn btn-outline-secondary me-2">Login</a></li>
+                        <li><a href="/register" class="btn btn-outline-secondary">Daftar</a></li>
                         @endif
                     </ul>
                 </div>
@@ -105,8 +105,8 @@
                     </div>
                     <!-- Side widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Side Widget</div>
-                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                        <div class="card-header">Wisata Favorit</div>
+                        <div class="card-body">Soon!</div>
                     </div>
                 </div>
             </div>

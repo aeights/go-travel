@@ -23,33 +23,43 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
+Route::middleware(['guest'])->group(function (){
+    // AUTH
+    Route::get('/login',[LoginController::class,'show'])->name('login');
 
-// AUTH
-Route::get('/login',[LoginController::class,'show']);
+    Route::post('/login/process',[LoginController::class,'auth']);
 
-Route::post('/login/process',[LoginController::class,'auth']);
+    Route::get('/register',[RegisterController::class,'show']);
 
-Route::get('/register',[RegisterController::class,'show']);
-
-Route::post('/register/process',[RegisterController::class,'register']);
-
-// DASHBOARD
-Route::get('/dashboard',[DashboardAdminController::class,'show']);
-
-// WISATA
-Route::get('/dashboard/wisata',[WisataController::class,'show']);
-
-Route::get('/dashboard/wisata/tambah',[WisataController::class,'showAdd']);
-
-Route::post('/tambah-wisata',[WisataController::class,'add']);
-
-Route::get('/dashboard/wisata/edit/{id}',[WisataController::class,'showEdit']);
-
-Route::post('/edit-wisata',[WisataController::class,'edit']);
-
-Route::get('/hapus-wisata/{id}',[WisataController::class,'delete']);
+    Route::post('/register/process',[RegisterController::class,'register']);
+    
+});
 
 // BLOG
 Route::get('/',[BlogUserController::class,'show']);
 
 Route::post('/{slug}',[BlogPostController::class,'show']);
+
+Route::get('/logout',[LoginController::class,'logout']);
+
+
+Route::middleware(['auth','role:admin'])->group(function (){
+    // DASHBOARD
+    Route::get('/dashboard',[DashboardAdminController::class,'show']);
+    
+    // WISATA
+    Route::get('/dashboard/wisata',[WisataController::class,'show']);
+    
+    Route::get('/dashboard/wisata/tambah',[WisataController::class,'showAdd']);
+    
+    Route::post('/tambah-wisata',[WisataController::class,'add']);
+    
+    Route::get('/dashboard/wisata/edit/{id}',[WisataController::class,'showEdit']);
+    
+    Route::post('/edit-wisata',[WisataController::class,'edit']);
+    
+    Route::get('/hapus-wisata/{id}',[WisataController::class,'delete']);
+});
+
+Route::middleware(['auth','role:user'])->group(function (){
+});
