@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class WisataController extends Controller
 {
@@ -35,6 +36,7 @@ class WisataController extends Controller
                 $wisata = new Wisata();
                 $request->file('gambar')->move('wisata/',date('YmdHis') . "." .$request->file('gambar')->getClientOriginalName());
                 $wisata->nama=$request->nama;
+                $wisata->slug=Str::slug($request->nama,'-');
                 $wisata->category_id=$request->kategori_id;
                 $wisata->alamat=$request->alamat;
                 $wisata->harga=$request->harga;
@@ -67,6 +69,7 @@ class WisataController extends Controller
                 $request->file('gambar')->move('wisata/',date('YmdHis') . "." .$request->file('gambar')->getClientOriginalName());
                 unlink("wisata/".$request->old_gambar);
                 $wisata->nama=$request->nama;
+                $wisata->slug=Str::slug($request->nama,'-');
                 $wisata->category_id=$request->kategori_id;
                 $wisata->alamat=$request->alamat;
                 $wisata->harga=$request->harga;
@@ -78,6 +81,7 @@ class WisataController extends Controller
             else {
                 $wisata = Wisata::find($request->id);
                 $wisata->nama=$request->nama;
+                $wisata->slug=Str::slug($request->nama,'-');
                 $wisata->alamat=$request->alamat;
                 $wisata->harga=$request->harga;
                 $wisata->deskripsi=$request->deskripsi;

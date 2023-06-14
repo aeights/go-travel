@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('nama');
+            $table->string('slug')->unique();
             $table->string('gambar');
             $table->bigInteger('harga');
             $table->string('alamat');

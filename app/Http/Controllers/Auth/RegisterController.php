@@ -25,7 +25,7 @@ class RegisterController extends Controller
 
         if ($credentials) {
             $user = new User();
-            $user->name=$request->fname.$request->lname;
+            $user->name=$request->fname.' '.$request->lname;
             $user->email=$request->email;
             $user->password=Hash::make($request->password);
             $user->role='user';

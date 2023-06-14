@@ -11,7 +11,7 @@
             <p class="card-title fs-5">Rp. {{$post->harga}}</p>
             <p class="card-text">{{substr($post->deskripsi,100)}}...</p>
             {{-- {{dd(strtolower(implode('-',explode(' ',$post->nama))));}} --}}
-            <form action="{{ url('/'.strtolower(implode('-',explode(' ',$post->nama)))) }}" method="POST">
+            <form action="{{ url('/wisata/'.strtolower(implode('-',explode(' ',$post->nama)))) }}" method="POST">
                 @csrf
                 <input name="id" value="{{$post->id}}" type="hidden" class="form-control">
                 <button type="submit" class="btn btn-primary">Read more →</button>

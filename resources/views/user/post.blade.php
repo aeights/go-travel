@@ -5,9 +5,15 @@
         <!-- Post title-->
         <div class="col d-flex justify-content-between">
             <h1 class="fw-bolder">{{$wisata->nama}}</h1>
+            @if ($isFavorite)    
             <div class="">
-                <a class="btn btn-outline-success">Favorite</a>
+                <a href="{{ url('/hapus-favorite/'.$wisata->id) }}" class="btn btn-outline-danger">Hapus Favorite</a>
             </div>
+            @else   
+            <div class="">
+                <a href="{{ url('/favorite/'.$wisata->id) }}" class="btn btn-outline-success">Favorite</a>
+            </div>
+            @endif
         </div>
         <p class="fs-5">Rp. {{$wisata->harga}}</p>
         <!-- Post meta content-->

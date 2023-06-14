@@ -38,7 +38,7 @@ Route::middleware(['guest'])->group(function (){
 // BLOG
 Route::get('/',[BlogUserController::class,'show']);
 
-Route::post('/{slug}',[BlogPostController::class,'show']);
+Route::get('/wisata/{slug}',[BlogPostController::class,'show']);
 
 Route::post('/search/wisata',[BlogUserController::class,'search']);
 
@@ -63,7 +63,14 @@ Route::middleware(['auth','role:admin'])->group(function (){
     Route::post('/edit-wisata',[WisataController::class,'edit']);
     
     Route::get('/hapus-wisata/{id}',[WisataController::class,'delete']);
+
+    // REPORTING
+    Route::get('/dashboard/disimpan',[DashboardAdminController::class,'favorite']);
 });
 
 Route::middleware(['auth','role:user'])->group(function (){
+
+    Route::get('/favorite/{id}',[BlogPostController::class,'favorite']);
+
+    Route::get('/hapus-favorite/{id}',[BlogPostController::class,'hapusFavorite']);
 });

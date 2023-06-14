@@ -55,11 +55,7 @@
                             <h2 class="card-title">{{$featured_post->nama}}</h2>
                             <p class="card-title fs-5">Rp. {{$featured_post->harga}}</p>
                             <p class="card-text">{{substr($featured_post->deskripsi,100)}}...</p>
-                            <form action="{{ url('/'.strtolower(implode('-',explode(' ',$post->nama)))) }}" method="POST">
-                                @csrf
-                                <input name="id" value="{{$post->id}}" type="hidden" class="form-control">
-                                <button type="submit" class="btn btn-primary">Read more →</button>
-                            </form>
+                            <a href="{{ url('/wisata/'.$featured_post->slug)}}" class="btn btn-primary">Read more →</a>
                         </div>
                     </div>
                     <div class="row">
