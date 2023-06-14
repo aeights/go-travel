@@ -55,7 +55,11 @@
                             <h2 class="card-title">{{$featured_post->nama}}</h2>
                             <p class="card-title fs-5">Rp. {{$featured_post->harga}}</p>
                             <p class="card-text">{{substr($featured_post->deskripsi,100)}}...</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
+                            <form action="{{ url('/'.strtolower(implode('-',explode(' ',$post->nama)))) }}" method="POST">
+                                @csrf
+                                <input name="id" value="{{$post->id}}" type="hidden" class="form-control">
+                                <button type="submit" class="btn btn-primary">Read more →</button>
+                            </form>
                         </div>
                     </div>
                     <div class="row">
@@ -82,10 +86,11 @@
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
+                            <form action="{{url('/search/wisata')}}" class="input-group" method="POST">
+                                @csrf
+                                <input name="keyword" class="form-control" type="text" placeholder="Cari wisata disini..." aria-label="Cari wisata disini..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                            </form>
                         </div>
                     </div>
                     <!-- Categories widget-->
@@ -96,7 +101,7 @@
                                 @foreach ($category as $item)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">{{$item->kategori}}</a></li>
+                                        <li><a href="{{url('/category/'.$item->id)}}">{{$item->kategori}}</a></li>
                                     </ul>
                                 </div>
                                 @endforeach

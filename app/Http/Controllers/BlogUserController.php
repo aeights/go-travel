@@ -16,4 +16,31 @@ class BlogUserController extends Controller
             'category' => Category::all(),
         ]);
     }
+
+    public function search(Request $request){
+        $validated = $request->validate([
+            'keyword' => 'required'
+        ]);
+        if ($validated) {
+            $searched_posts = Wisata::where('nama','LIKE','%'.$request->keyword.'%')->get();
+            if ($searched_posts) {
+                return view('user.search',
+                [
+                    'searched_posts' => $searched_posts,
+                    'category' => Category::all()
+                ]);
+            }else{
+                return back()->with('message','Wisata yang anda cari tidak ada');
+            }
+        } else{
+            return back()->with('message','Ketikkan wisata yang ingin anda cari');
+        }
+    }
+
+    public function category($ctg){
+        return view('user.category',[
+            'posts' => Wisata::where('category_id',$ctg)->get(),
+            'category' => Category::all()
+        ]);
+    }
 }

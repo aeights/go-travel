@@ -50,10 +50,11 @@
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                            </div>
+                            <form action="{{url('/search/wisata')}}" class="input-group" method="POST">
+                                @csrf
+                                <input name="keyword" class="form-control" type="text" placeholder="Cari wisata disini..." aria-label="Cari wisata disini..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                            </form>
                         </div>
                     </div>
                     <!-- Categories widget-->
@@ -64,7 +65,7 @@
                                 @foreach ($category as $item)
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">{{$item->kategori}}</a></li>
+                                        <li><a href="{{url('/category/'.$item->id)}}">{{$item->kategori}}</a></li>
                                     </ul>
                                 </div>
                                 @endforeach

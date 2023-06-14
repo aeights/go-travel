@@ -40,6 +40,10 @@ Route::get('/',[BlogUserController::class,'show']);
 
 Route::post('/{slug}',[BlogPostController::class,'show']);
 
+Route::post('/search/wisata',[BlogUserController::class,'search']);
+
+Route::get('/category/{ctg}',[BlogUserController::class,'category']);
+
 Route::get('/logout',[LoginController::class,'logout']);
 
 
